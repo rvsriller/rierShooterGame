@@ -27,6 +27,18 @@ body {
   color: white;
 }
 
+.pointsStatus {
+  position: relative;
+  top: -40px;
+  left: 15rem;
+  cursor: pointer;
+  color: cornflowerblue;
+  background-color: black;
+  border-radius: 5px;
+  width: fit-content;
+  padding-inline: 20px;
+}
+
 .startButton {
   position: relative;
   top: 9rem;
@@ -53,4 +65,16 @@ body {
   position: relative;
   height: 60px;
   width: 70px;
+}
+
+.alienTransition {
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.deadAlien {
+  position: relative;
+  width: 70px;
+  height: 60px;
+  opacity: 0;
 }
