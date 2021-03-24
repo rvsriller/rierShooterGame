@@ -1,25 +1,27 @@
 const yourShip = document.querySelector('.playerShooter');
 const playArea = document.querySelector('#mainPlayArea');
 const aliensImg = ['img/firstmonster.png', 'img/secondmonster.png', 'img/thirdmonster.png'];
-const instructionsText = document.querySelector('.gameInstructions');
+const instructionsText = document.querySelector('.gameInstruction');
 const startButton = document.querySelector('.startButton');
-let alienInterval;
+const pointsStatus = document.querySelector('.pointsStatus');
+let alienInterval, points = 0;
+
 
 //Move and shoot of ship
 function flyShip(event) {
     if(event.key === 'ArrowUp') {
         event.preventDefault();
-        moveUp();
+        moveUp();  //allows the ship goes up
     } else if(event.key === 'ArrowDown') {
         event.preventDefault();
-        moveDown();
+        moveDown(); //allows the ship goes down
     } else if(event.key === " ") {
         event.preventDefault();
-        fireLaser();
+        fireLaser(); //fire a laser as a shot
     }
-} 
+}
 
-//This function allows the ship to go up
+//This function allows the ship to go up 
 function moveUp() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
     if(topPosition === "0px") {
@@ -46,12 +48,18 @@ function moveDown() {
 
 //This function allows the ship to shoot in objects
 function fireLaser() {
-    let laser = createLaserElement();
-    playArea.appendChild(laser);
-    moveLaser(laser);
+    let laser = createLaserElement(); //create the element
+    playArea.appendChild(laser); //set laser in plane game area
+    moveLaser(laser); //laser animation in horizontal axis
 }
 
-//This function creates every laser element and show it on display
+
+/** This function creates every laser element and show it on display
+ * Extract x position of the ship
+ * Extract y position of the ship
+ * Creates a laser animation using its picture as illustration
+ * Set laser position based on ship's position in plane
+*/
 function createLaserElement() {
     let xPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('left'));
     let yPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('top'));
@@ -59,9 +67,10 @@ function createLaserElement() {
     newLaser.src = 'img/shoot.png';
     newLaser.classList.add('laser');
     newLaser.style.left = `${xPosition}px`;
-    newLaser.style.top = `${yPosition - 10}px`;
+    newLaser.style.top = `${yPosition}px`;
     return newLaser;
 }
+
 
 
 //This function makes the laser aninatiom
@@ -70,11 +79,12 @@ function moveLaser(laser) {
         let xPosition = parseInt(laser.style.left);
         let aliens = document.querySelectorAll('.alien');
 
-        aliens.forEach((alien) => { //comparando se cada alien foi atingido, se sim, troca o src da imagem
+        aliens.forEach((alien) => { //checking if there were aliens collision, if yes, an explosion image is set
             if(checkLaserCollision(laser, alien)) {
                 alien.src = 'img/explosion.png';
                 alien.classList.remove('alien');
                 alien.classList.add('deadAlien');
+                setPoints('currentPlaying');
             }
         })
 
@@ -90,7 +100,7 @@ function moveLaser(laser) {
 //This function creates random enemies
 function createAliens() {
     let newAlien = document.createElement('img');
-    let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //sorteio de imagens
+    let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //selecting image of enemies
     newAlien.src = alienSprite;
     newAlien.classList.add('alien');
     newAlien.classList.add('alienTransition');
@@ -170,3 +180,12 @@ function gameOver() {
     });
 }
 
+//Experience points
+function setPoints(status){
+    if(status == 'startingGame'){
+        points = 0;
+    } else if (status == 'currentPlaying'){
+        points = points + 10; 
+    }
+    pointsStatus.innerHTML = `${points} xp`;
+}
