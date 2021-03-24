@@ -137,3 +137,17 @@ function checkLaserCollision(laser, alien) {
     }
 }
 
+
+//This function starts the game
+startButton.addEventListener('click', (event) => {
+    playGame();
+})
+
+function playGame() {
+    startButton.style.display = 'none';
+    instructionsText.style.display = 'none';
+    window.addEventListener('keydown', flyShip);
+    alienInterval = setInterval(() => {
+        createAliens();
+    }, 2000);
+}
