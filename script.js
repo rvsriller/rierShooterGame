@@ -85,3 +85,33 @@ function moveLaser(laser) {
         }
     }, 10);
 }
+
+
+//This function creates random enemies
+function createAliens() {
+    let newAlien = document.createElement('img');
+    let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //sorteio de imagens
+    newAlien.src = alienSprite;
+    newAlien.classList.add('alien');
+    newAlien.classList.add('alienTransition');
+    newAlien.style.left = '370px';
+    newAlien.style.top = `${Math.floor(Math.random() * 330) + 30}px`;
+    playArea.appendChild(newAlien);
+    moveAlien(newAlien);
+}
+
+//This function moves all enemies
+function moveAlien(alien) {
+    let moveAlienInterval = setInterval(() => {
+        let xPosition = parseInt(window.getComputedStyle(alien).getPropertyValue('left'));
+        if(xPosition <= 50) {
+            if(Array.from(alien.classList).includes('deadAlien')) {
+                alien.remove();
+            } else {
+                gameOver();
+            }
+        } else {
+            alien.style.left = `${xPosition - 4}px`;
+        }
+    }, 30);
+}
