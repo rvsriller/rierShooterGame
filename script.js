@@ -157,7 +157,7 @@ startButton.addEventListener('click', (event) => {
 /**
  * This function start removing two elemtens in display such as instruction text and the start button
  * It also set an event listener for keydown button to start the flyship function
- * The Alien Interval (generator of aliens) 
+ * The Alien Interval fuction (generator of aliens) is called and the enemies appear on screen
  */
 function playGame() {
     startButton.style.display = 'none';
