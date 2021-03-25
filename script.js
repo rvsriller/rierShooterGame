@@ -105,7 +105,7 @@ function createAliens() {
     newAlien.classList.add('alien');
     newAlien.classList.add('alienTransition');
     newAlien.style.left = '370px';
-    newAlien.style.top = `${Math.floor(Math.random() * 330) + 30}px`;
+    newAlien.style.top = `${Math.floor(Math.random() * 330) + 20}px`;
     playArea.appendChild(newAlien);
     moveAlien(newAlien);
 }
@@ -153,6 +153,12 @@ startButton.addEventListener('click', (event) => {
     playGame();
 })
 
+
+/**
+ * This function start removing two elemtens in display such as instruction text and the start button
+ * It also set an event listener for keydown button to start the flyship function
+ * The Alien Interval (generator of aliens) 
+ */
 function playGame() {
     startButton.style.display = 'none';
     instructionsText.style.display = 'none';
