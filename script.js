@@ -22,7 +22,11 @@ function flyShip(event) {
 }
 
 
-
+/** The move up and move down functions allow the ship to move in both ways 
+ * Based on plane edges, the ship will not go througout the edge
+ * 0p x for top limited position 
+ * 510 px for bottom limited position
+ */ 
 function moveUp() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
     if(topPosition === "0px") {
@@ -66,7 +70,7 @@ function createLaserElement() {
     newLaser.src = 'img/shoot.png';
     newLaser.classList.add('laser');
     newLaser.style.left = `${xPosition}px`;
-    newLaser.style.top = `${yPosition - 10} px`; // -10 px to put the fire laser in the middle of the ship
+    newLaser.style.top = `${yPosition - 10}px`; // -10 px to put the fire laser in the middle of the ship
     return newLaser;
 }
 
@@ -114,15 +118,18 @@ function createAliens() {
     moveAlien(newAlien);
 }
 
-//This function moves aliens from right to left 
+/**This function moves aliens from right to left
+ * When the alien position is lower or equal to 80 px, the object is destroyed by ship firelaser
+ * If alien position is upper to 80 px, the game over function is called beucase the enemy was not destroyed
+ */ 
 function moveAlien(alien) {
     let moveAlienInterval = setInterval(() => {
         let xPosition = parseInt(window.getComputedStyle(alien).getPropertyValue('left'));
-        if(xPosition <= 80) {
+        if(xPosition <= 50) { // test --------
             if(Array.from(alien.classList).includes('deadAlien')) {
                 alien.remove();
             } else {
-                gameOver();
+                //gameOver();
             }
         } else {
             alien.style.left = `${xPosition - 4}px`;
@@ -139,7 +146,7 @@ function checkLaserCollision(laser, alien) {
     let laserBottom = laserTop - 20;
     let alienTop = parseInt(alien.style.top);
     let alienLeft = parseInt(alien.style.left);
-    let alienBottom = alienTop - 30;
+    let alienBottom = alienTop - 30; 
     if(laserLeft != 340 && laserLeft + 40 >= alienLeft) {
         if(laserTop <= alienTop && laserTop >= alienBottom) {
             return true;
