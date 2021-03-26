@@ -22,11 +22,7 @@ function flyShip(event) {
 }
 
 
-/** The move up and move down functions allow the ship to move in both ways 
- * Based on plane edges, the ship will not go througout the edge
- * 0p x for top limited position 
- * 510 px for bottom limited position
- */ 
+
 function moveUp() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
     if(topPosition === "0px") {
@@ -58,6 +54,11 @@ function fireLaser() {
 }
 
 
+/** This function creates every laser element and show it on display
+ * Extract x and y position of the ship
+ * Creates a laser animation using its picture as illustration
+ * Set laser position based on ship's position in plane
+*/
 function createLaserElement() {
     let xPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('left'));
     let yPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('top'));
