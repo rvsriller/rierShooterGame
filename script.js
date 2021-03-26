@@ -7,7 +7,7 @@ const pointsStatus = document.querySelector('.pointsStatus');
 let alienInterval, points = 0;
 
 
-//Move and shoot of ship
+//This function identify the button pressed trought listening event and select the movement or shot of the ship
 function flyShip(event) {
     if(event.key === 'ArrowUp') {
         event.preventDefault();
@@ -21,30 +21,34 @@ function flyShip(event) {
     }
 }
 
-//This function allows the ship to go up 
+
+/** The move up and move down functions allow the ship to move in both ways 
+ * Based on plane edges, the ship will not go througout the edge
+ * 0p x for top limited position 
+ * 510 px for bottom limited position
+ */ 
 function moveUp() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
     if(topPosition === "0px") {
         return
     } else {
         let position = parseInt(topPosition);
-        position -= 50;
+        position -= 50; //Decrease distance from the top
         yourShip.style.top = `${position}px`;
     }
 }
 
-
-//This function allows the ship to go down
 function moveDown() {
     let topPosition = getComputedStyle(yourShip).getPropertyValue('top');
     if(topPosition === "510px"){
         return
     } else {
         let position = parseInt(topPosition);
-        position += 50;
+        position += 50; //Increase distance from the top
         yourShip.style.top = `${position}px`;
     }
 }
+
 
 //This function allows the ship to shoot in objects
 function fireLaser() {
@@ -55,8 +59,7 @@ function fireLaser() {
 
 
 /** This function creates every laser element and show it on display
- * Extract x position of the ship
- * Extract y position of the ship
+ * Extract x and y position of the ship
  * Creates a laser animation using its picture as illustration
  * Set laser position based on ship's position in plane
 */
@@ -67,13 +70,13 @@ function createLaserElement() {
     newLaser.src = 'img/shoot.png';
     newLaser.classList.add('laser');
     newLaser.style.left = `${xPosition}px`;
-    newLaser.style.top = `${yPosition}px`;
+    newLaser.style.top = `${yPosition - 10} px`; // -10 px to put the fire laser in the middle of the ship
     return newLaser;
 }
 
 
 
-//This function makes the laser aninatiom
+
 function moveLaser(laser) {
     let laserInterval = setInterval(() => {
         let xPosition = parseInt(laser.style.left);
@@ -88,12 +91,14 @@ function moveLaser(laser) {
             }
         })
 
+        //Destroy the laser
         if(xPosition === 340) {
             laser.remove();
         } else {
             laser.style.left = `${xPosition + 8}px`;
         }
-    }, 10);
+
+    }, 10); //execute this function each 10 ms
 }
 
 
@@ -105,16 +110,16 @@ function createAliens() {
     newAlien.classList.add('alien');
     newAlien.classList.add('alienTransition');
     newAlien.style.left = '370px';
-    newAlien.style.top = `${Math.floor(Math.random() * 330) + 20}px`;
+    newAlien.style.top = `${Math.floor(Math.random() * 330) + 30}px`; //Y position where it will appears
     playArea.appendChild(newAlien);
     moveAlien(newAlien);
 }
 
-//This function moves all enemies
+//This function moves aliens from right to left 
 function moveAlien(alien) {
     let moveAlienInterval = setInterval(() => {
         let xPosition = parseInt(window.getComputedStyle(alien).getPropertyValue('left'));
-        if(xPosition <= 50) {
+        if(xPosition <= 80) {
             if(Array.from(alien.classList).includes('deadAlien')) {
                 alien.remove();
             } else {
