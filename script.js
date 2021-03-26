@@ -58,11 +58,6 @@ function fireLaser() {
 }
 
 
-/** This function creates every laser element and show it on display
- * Extract x and y position of the ship
- * Creates a laser animation using its picture as illustration
- * Set laser position based on ship's position in plane
-*/
 function createLaserElement() {
     let xPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('left'));
     let yPosition = parseInt(window.getComputedStyle(yourShip).getPropertyValue('top'));
@@ -76,7 +71,10 @@ function createLaserElement() {
 
 
 
-
+/* This function makes the laser aninatiom
+* Laser interval set the time movement of the laser from left to right
+* If the laser is end area (340 px) it will be destroyed, otherwise, it continues moving to the right
+*/
 function moveLaser(laser) {
     let laserInterval = setInterval(() => {
         let xPosition = parseInt(laser.style.left);
