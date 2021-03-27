@@ -6,12 +6,10 @@ The Space Shooter Game was the proposal for one of the courses presented in the 
 
 # Tecnologies
 
-HTML 5   |    CSS 3    |   Javascript ES6 
-
-
+HTML 5 | CSS 3 | Javascript ES6
 
 In this project, the challenge was build the game using HTML, CSS and Javascript. It was possible to learn about positions with CSS and programming logic, DOM manipulation, eventListeners and Array manipulation.
 
 It's easy and simple to play the game.
 
-You can open the game on your browsing, [play the game!!!](https://rvsriller.github.io/rierSpaceShooter/)
+You can open the game on your browsing, [play the game!!!](https://rvsriller.github.io/rierShooterGame/)
