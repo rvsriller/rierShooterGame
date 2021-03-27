@@ -129,7 +129,7 @@ function moveAlien(alien) {
             if(Array.from(alien.classList).includes('deadAlien')) {
                 alien.remove();
             } else {
-                //gameOver();
+                gameOver();
             }
         } else {
             alien.style.left = `${xPosition - 4}px`;
@@ -143,7 +143,7 @@ function moveAlien(alien) {
 function checkLaserCollision(laser, alien) {
     let laserTop = parseInt(laser.style.top);
     let laserLeft = parseInt(laser.style.left);
-    let laserBottom = laserTop - 20;
+    let laserBottom = laserTop - 10;
     let alienTop = parseInt(alien.style.top);
     let alienLeft = parseInt(alien.style.left);
     let alienBottom = alienTop - 30; 
