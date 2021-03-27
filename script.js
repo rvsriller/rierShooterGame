@@ -105,7 +105,10 @@ function moveLaser(laser) {
 }
 
 
-//This function creates random enemies
+/**This function creates random enemies 
+ * It generates a random number to select an image in array
+ * This image is an enemy
+*/
 function createAliens() {
     let newAlien = document.createElement('img');
     let alienSprite = aliensImg[Math.floor(Math.random() * aliensImg.length)]; //selecting image of enemies
