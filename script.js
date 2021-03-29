@@ -90,7 +90,7 @@ function moveLaser(laser) {
                 alien.src = 'img/explosion.png';
                 alien.classList.remove('alien');
                 alien.classList.add('deadAlien');
-                setPoints('currentPlaying');
+                //setPoints('currentPlaying'); Experience points improvement
             }
         })
 
@@ -200,7 +200,7 @@ function gameOver() {
     });
 }
 
-//Experience points
+/* Experience points  | Improvements
 function setPoints(status){
     if(status == 'startingGame'){
         points = 0;
@@ -209,3 +209,4 @@ function setPoints(status){
     }
     pointsStatus.innerHTML = `${points} xp`;
 }
+*/
