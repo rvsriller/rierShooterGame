@@ -2,7 +2,11 @@
 
 Space Shooter Game provided in Javascript Game Developer bootcamp made on the Digital Innovation One courses
 
+![](img/game.png)
+
 The Space Shooter Game was the proposal for one of the courses presented in the Javascript Game Developer bootcamp. Concepts are covered in the course to emphasize the Game Development with Javascript.
+
+
 
 # Tecnologies
 
