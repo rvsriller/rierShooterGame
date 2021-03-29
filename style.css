@@ -27,17 +27,20 @@ body {
   color: white;
 }
 
+/*  Experience counter 
 .pointsStatus {
-  position: relative;
-  top: -40px;
+  position: fixed;
+  text-align: center;
+  top: 40px;
   left: 15rem;
   cursor: pointer;
   color: cornflowerblue;
-  background-color: black;
+  background-color: white;
   border-radius: 5px;
   width: fit-content;
+  height: 20px;
   padding-inline: 20px;
-}
+} */
 
 .startButton {
   position: relative;
