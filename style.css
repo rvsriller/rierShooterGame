@@ -48,6 +48,10 @@ body {
   left: 15rem;
   cursor: pointer;
   color: white;
+  background-color: darkslateblue;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 3px;
 }
 
 .playerShooter {
